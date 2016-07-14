@@ -40,6 +40,8 @@ function env($name, $default = null)
 
 $debug = env('APP_DEBUG', false);
 
+
+//TODO:应该在 c 层加载，console 模式不需要
 if ($debug) {
     //debug模式启用 Symfony\Debug 组件，提供友好的报错页面
     Debug::enable();
@@ -61,14 +63,10 @@ if (!$debug) {
      * 文件缓存几乎没有效果，目前看 php 扩展实现的缓存效果最好
      */
     $cache = new App\Lib\YacCache(new Yac());
+    //$cache = new App\Lib\PhpFileCache(__DIR__ . '/../storage/cache');
+    $builder->setDefinitionCache($cache);
 
-} else {
-    /**
-     * 开发环境使用数组缓存
-     */
-    $cache = new \DI\Cache\ArrayCache();
 }
-$builder->setDefinitionCache($cache);
 
 /**
  * 把配置文件加载到 DI 容器中
@@ -92,7 +90,7 @@ $builder->addDefinitions([
         return $req;
     }),
     /**
-     * 缓存类配置
+     * 日志类配置
      */
     LoggerInterface::class => function(ContainerInterface $c) {
         $log_path = $c->get('app.log_path');

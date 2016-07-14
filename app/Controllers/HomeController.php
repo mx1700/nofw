@@ -58,10 +58,10 @@ class HomeController
         $this->log = $log;
     }
 
-    public function hello()
+    public function hello($id = 1)
     {
         $name = $this->request->get('name', 'foo');
-        return new Response("hello, {$name}. env: {$this->env}. debug:{$this->debug}");
+        return new Response("hello, {$name}. env: {$this->env}. debug:{$this->debug}, id:{$id}");
     }
 
     public function getUser($id)
