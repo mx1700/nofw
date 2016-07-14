@@ -1,15 +1,15 @@
 {
     "require": {
         "php": ">=7.0",
-        "php-di/php-di": "^5.2",
+        "php-di/php-di": "^5.3",
         "symfony/http-foundation": "^3.0",
-        "nikic/fast-route": "^0.8.0",
-        "vlucas/phpdotenv": "^2.2",
+        "nikic/fast-route": "^1.0",
+        "vlucas/phpdotenv": "^2.3",
         "doctrine/annotations": "^1.2",
         "doctrine/cache": "^1.6",
-        "symfony/debug": "^3.0",
-        "monolog/monolog": "^1.18",
-        "symfony/http-kernel": "^3.0"
+        "symfony/debug": "^3.1",
+        "monolog/monolog": "^1.20",
+        "symfony/http-kernel": "^3.1"
     },
     "autoload": {
         "psr-4": {

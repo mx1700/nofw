@@ -38,13 +38,20 @@ class HomeController
     private $env;
 
     /**
+     * 参数注入示例
+     * @Inject("app.debug")
+     * @var string debug
+     */
+    private $debug;
+
+    /**
      * 构造函数，依赖会被 DI 容器自动注入
      * HomeController constructor.
      * @param Request $request
      * @param Database $db
      * @param LoggerInterface $log
      */
-    public function __construct(Request $request, Database $db, LoggerInterface $log)
+    public function __construct(Request $request, Database $db = null, LoggerInterface $log = null)
     {
         $this->request = $request;
         $this->db = $db;
@@ -54,8 +61,7 @@ class HomeController
     public function hello()
     {
         $name = $this->request->get('name', 'foo');
-        $this->log->warning("cal hello action");
-        return new Response("hello, {$name}. env: {$this->env}");
+        return new Response("hello, {$name}. env: {$this->env}. debug:{$this->debug}");
     }
 
     public function getUser($id)

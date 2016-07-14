@@ -5,7 +5,7 @@
  */
 return [
     'app.env' => env('APP_ENV', 'production'),
-    'app.debug' => env('APP_DEBUG', 'false'),
+    'app.debug' => env('APP_DEBUG', false),
     'app.cache_path' => __DIR__ . '/../storage/cache',
     'app.log_path' => __DIR__ . '/../storage/log',
 ];
