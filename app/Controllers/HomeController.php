@@ -3,9 +3,10 @@ namespace App\Controllers;
 
 use App\Lib\Database;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
+use Zend\Diactoros\Response\JsonResponse;
+use Zend\Diactoros\Response\TextResponse;
 
 /**
  * 控制器示例
@@ -19,6 +20,11 @@ class HomeController
      * @var Request
      */
     private $request;
+
+    /**
+     * @var Response
+     */
+    private $response;
 
     /**
      * @var Database
@@ -48,38 +54,25 @@ class HomeController
      * 构造函数，依赖会被 DI 容器自动注入
      * HomeController constructor.
      * @param Request $request
+     * @param Response $response
      * @param Database $db
      * @param LoggerInterface $log
      */
-    public function __construct(Request $request, Database $db = null, LoggerInterface $log = null)
+    public function __construct(Request $request, Response $response, Database $db = null, LoggerInterface $log = null)
     {
         $this->request = $request;
+        $this->response = $response;
         $this->db = $db;
         $this->log = $log;
     }
 
-    public function hello($id = 1)
+    public function hello($id = 1, $name = 'Tom')
     {
-        $name = $this->request->get('name', 'foo');
-        return new Response("hello, {$name}. env: {$this->env}. debug:{$this->debug}, id:{$id}");
+        return new TextResponse("hello, {$name}. env: {$this->env}. debug:{$this->debug}, id:{$id}");
     }
 
     public function getUser($id)
     {
         return new JsonResponse(['id' => $id, 'name' => '你好']);
-    }
-
-    /**
-     * $log 会自动注入到方法里
-     * @param LoggerInterface $log
-     * @param string $name
-     * @param int $age
-     * @return Response
-     */
-    public function test(LoggerInterface $log, $name = 'zhang', $age = 0)
-    {
-        $log->info('test');
-        var_dump($log);
-        return new Response("hello {$name}, age: {$age}");
     }
 }

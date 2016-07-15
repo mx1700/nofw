@@ -1,15 +1,20 @@
 {
+    "scripts": {
+        "serve": "php -S 0.0.0.0:9000 server.php",
+        "clear-cache-file": "rm -rf storage/cache/*",
+        "clear-log": "rm -rf storage/log/*",
+        "clear": ["@clear-cache-file", "@clear-log"]
+    },
     "require": {
         "php": ">=7.0",
         "php-di/php-di": "^5.3",
-        "symfony/http-foundation": "^3.0",
         "nikic/fast-route": "^1.0",
         "vlucas/phpdotenv": "^2.3",
         "doctrine/annotations": "^1.2",
         "doctrine/cache": "^1.6",
         "symfony/debug": "^3.1",
         "monolog/monolog": "^1.20",
-        "symfony/http-kernel": "^3.1"
+        "zendframework/zend-diactoros": "^1.3"
     },
     "autoload": {
         "psr-4": {
