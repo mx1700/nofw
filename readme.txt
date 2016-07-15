@@ -26,6 +26,12 @@ monolog/monolog		日志
 5.可以通过容器实现AOP技术（示例代码里没有涉及这块）
 
 
+TODO
+twig/twig
+oscarotero/psr7-middlewares
+respect/validation              //验证
+league/glide                   //图片压缩
+
 
 nofw 项目地址
  https://github.com/Swader/nofw
