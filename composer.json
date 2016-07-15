@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "serve": "php -S 0.0.0.0:9000 server.php",
+        "serve": "php -S 0.0.0.0:9000 -t ./public",
         "clear-cache-file": "rm -rf storage/cache/*",
         "clear-log": "rm -rf storage/log/*",
         "clear": ["@clear-cache-file", "@clear-log"]
