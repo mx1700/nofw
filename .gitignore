@@ -1,4 +1,5 @@
 .idea
+.env
 vendor
 storage/cache/*
 storage/log/*

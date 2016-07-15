@@ -10,8 +10,10 @@ use Symfony\Component\Debug\ExceptionHandler;
 /*
  * 加载环境变量配置，配置文件在项目根目录 .env 文件
  */
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/../');
-$dotenv->load();
+if (class_exists('Dotenv\Dotenv')) {
+    $dotenv = new Dotenv\Dotenv(dirname(__DIR__));
+    $dotenv->load();
+}
 
 /**
  * 加载环境变量包装函数，提供了返回默认值功能
@@ -34,7 +36,7 @@ $debug = env('APP_DEBUG', false);
 
 
 //TODO:应该在 c 层加载，console 模式不需要
-if ($debug) {
+if ($debug && class_exists('Symfony\Component\Debug\Debug')) {
     //debug模式启用 Symfony\Debug 组件，提供友好的报错页面
     Debug::enable();
     ErrorHandler::register();
