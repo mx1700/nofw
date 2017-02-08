@@ -14,6 +14,7 @@ return [
     'app.debug' => env('APP_DEBUG', false),
     'app.cache_path' => dirname(__DIR__) . '/storage/cache',
     'app.log_path' => dirname(__DIR__) . '/storage/log',
+
     /**
      * 日志类配置
      */
