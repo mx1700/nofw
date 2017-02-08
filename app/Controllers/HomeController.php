@@ -58,7 +58,7 @@ class HomeController
      * @param Database $db
      * @param LoggerInterface $log
      */
-    public function __construct(Request $request, Response $response, Database $db = null, LoggerInterface $log = null)
+    public function __construct(Request $request, Response $response, Database $db, LoggerInterface $log)
     {
         $this->request = $request;
         $this->response = $response;
@@ -68,6 +68,7 @@ class HomeController
 
     public function hello($id = 1, $name = 'Tom')
     {
+        $this->log->error("aaa");
         return new TextResponse("hello, {$name}. env: {$this->env}. debug:{$this->debug}, id:{$id}");
     }
 
