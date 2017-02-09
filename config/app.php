@@ -21,7 +21,8 @@ return [
     LoggerInterface::class => function(ContainerInterface $c) {
         $log_path = $c->get('app.log_path');
         $log = new Logger('App');
-        $log->pushHandler(new StreamHandler($log_path . '/app.log', Logger::NOTICE));
+        $log->pushHandler(new StreamHandler($log_path . '/error.log', Logger::ERROR));
+        $log->pushHandler(new StreamHandler($log_path . '/app.log', Logger::DEBUG));
         return $log;
     },
     /**
