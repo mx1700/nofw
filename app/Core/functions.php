@@ -24,3 +24,18 @@ if (!function_exists('env')) {
         return $default;
     }
 }
+
+if (!function_exists('app')) {
+    /**
+     * 获取容器内实体
+     * @param null $name
+     * @return \App\Core\Application|mixed
+     */
+    function app($name = null) {
+        if (!$name) {
+            return \App\Core\Application::getInstance();
+        } else {
+            return \App\Core\Application::getInstance()->get($name);
+        }
+    }
+}

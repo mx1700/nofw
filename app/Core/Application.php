@@ -9,9 +9,11 @@
 namespace App\Core;
 
 use \DI\Container;
+use Dotenv\Exception\ValidationException;
 use \Zend\Diactoros\Server;
+use Interop\Container\ContainerInterface;
 
-class Application
+class Application implements ContainerInterface
 {
     /**
      * 项目根目录
@@ -25,14 +27,54 @@ class Application
     private $container = null;
 
     /**
+     * 全局实例对象
+     * @var static
+     */
+    private static $instance;
+
+    /**
      * Application constructor.
      * @param string $basePath  项目跟目录
      */
     public function __construct($basePath) {
+        if (static::$instance) {
+            throw new ValidationException("只能存在一个 Application 实例");
+        }
         $this->basePath = rtrim($basePath, '\/');;
         // env 配置需要先加载，conf 依赖 env 配置
         $this->loadEnv();
         $this->buildContainer();
+        static::$instance = $this;
+    }
+
+    /**
+     * 获取全局实例
+     * @return Application
+     */
+    public static function getInstance() {
+        return static::$instance;
+    }
+
+    /**
+     * Finds an entry of the container by its identifier and returns it.
+     *
+     * @param string $id Identifier of the entry to look for.
+     * @return mixed Entry.
+     */
+    public function get($id) {
+        return $this->container->get($id);
+    }
+
+    /**
+     * Returns true if the container can return an entry for the given identifier.
+     * Returns false otherwise.
+     *
+     * @param string $id Identifier of the entry to look for.
+     *
+     * @return boolean
+     */
+    public function has($id) {
+        return $this->container->has($id);
     }
 
     /**
@@ -55,7 +97,7 @@ class Application
         $builder->useAutowiring(true);
         $builder->useAnnotations(true);
 
-        if (!!$debug) {     //TODO:测试用
+        if (!$debug) {     //TODO:测试用
             /*
              * 生产环境为 DI 容器增加缓存。这里使用的 Yac 作为缓存
              * 尝试过远程 redis 作为缓存，效果不好
