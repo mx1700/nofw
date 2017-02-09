@@ -6,7 +6,7 @@
  * Time: 9:12
  */
 
-namespace App\Lib;
+namespace App\Core;
 
 
 use \Doctrine\Common\Cache\CacheProvider;
@@ -21,9 +21,9 @@ class YacCache extends CacheProvider
 {
     private $yac;
 
-    public function __construct(\Yac $yac)
+    public function __construct()
     {
-        $this->yac = $yac;
+        $this->yac = new \Yac();
     }
 
     /**

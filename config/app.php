@@ -43,7 +43,7 @@ return [
                     $r->addRoute($routeDef[0], $routeDef[1], $routeDef[2]);
                 }
             }, [
-            'cacheFile' => $cache_path . '/route.cache',
+            'cacheFile' => $cache_path . '/system/route.cache',
             'cacheDisabled' => $debug,
         ]);
         return $dispatcher;

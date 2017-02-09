@@ -11,8 +11,6 @@ namespace App\Core;
 use \DI\Container;
 use \Zend\Diactoros\Server;
 
-include 'helpers.php';
-
 class Application
 {
     /**
@@ -57,7 +55,7 @@ class Application
         $builder->useAutowiring(true);
         $builder->useAnnotations(true);
 
-        if (!!$debug) {
+        if (!!$debug) {     //TODO:测试用
             /*
              * 生产环境为 DI 容器增加缓存。这里使用的 Yac 作为缓存
              * 尝试过远程 redis 作为缓存，效果不好
@@ -65,8 +63,8 @@ class Application
              */
             //TODO:检查是否有 yac apcu，有则使用缓存，没有则不使用
             //TODO:需要检验自己实现的 PhpFileCache 是否有效
-            //$cache = new \App\Lib\YacCache(new Yac());
-            //$cache = new \Doctrine\Common\Cache\FilesystemCache($this->basePath . '/storage/cache/');
+            //$cache = new \App\Lib\YacCache();
+            //$cache = new \Doctrine\Common\Cache\FilesystemCache($this->basePath . '/storage/cache/app/');
             //$builder->setDefinitionCache($cache);
         }
 
