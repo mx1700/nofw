@@ -18,8 +18,10 @@ use Psr\Http\Message\ResponseInterface as Response;
 class WebServerFactory
 {
     public function create(Container $c) {
+        $debug = $c->get('app.debug');
+
         $server = Server::createServer(
-            function (Request $request,Response $response, $done) use ($c) {
+            function (Request $request,Response $response, $done) use ($c, $debug) {
                 /**
                  * 从容器获取当前匹配的路由，内容就是 routes 配置里匹配上的项
                  */
@@ -61,7 +63,7 @@ class WebServerFactory
             $_COOKIE,
             $_FILES
         );
-        $debug = $c->get('app.debug');
+
         if ($debug && class_exists('Symfony\Component\Debug\Debug')) {
             \Symfony\Component\Debug\Debug::enable();
             \Symfony\Component\Debug\ErrorHandler::register();
