@@ -61,6 +61,13 @@ class WebServerFactory
             $_COOKIE,
             $_FILES
         );
+        $debug = $c->get('app.debug');
+        if ($debug && class_exists('Symfony\Component\Debug\Debug')) {
+            \Symfony\Component\Debug\Debug::enable();
+            \Symfony\Component\Debug\ErrorHandler::register();
+            \Symfony\Component\Debug\ExceptionHandler::register();
+            \Symfony\Component\Debug\DebugClassLoader::enable();
+        }
         return $server;
     }
 }
