@@ -11,9 +11,6 @@ return [
      * 3.对应controller和action
      */
     ['GET', '/', ['App\Controllers\HomeController', 'hello']],
-//    ['GET', '/hello', ['App\Controllers\HomeController', 'hello']],
-//    ['GET', '/user/{id:\d+}', ['App\Controllers\HomeController', 'getUser']],
-
-
+    ['GET', '/user/{id:\d+}', ['App\Controllers\HomeController', 'getUser']],
     ['GET', '/hello', ['App\Controllers\HelloController', 'index']],
 ];

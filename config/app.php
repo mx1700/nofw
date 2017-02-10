@@ -3,7 +3,6 @@
  * 项目配置文件，配置项比 env 配置更全面（env 只应该包含环境相关配置）
  * 会加载 env 里的配置，如果 env 里没有，则使用默认值
  */
-use FastRoute\RouteCollector;
 use Interop\Container\ContainerInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -46,5 +45,8 @@ return [
         return [
             \App\Middleware\Router::class,
         ];
-    }
+    },
+    'commends' => [
+        \App\Console\TestCommand::class
+    ]
 ];

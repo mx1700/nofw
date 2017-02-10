@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: lizhaoguang
- * Date: 17/2/8
- * Time: 19:06
+ * 引导文件不做任何业务处理，仅仅是加载配置，包括环境配置，项目配置，注入配置等
  */
 
 namespace App\Core;
@@ -124,5 +121,12 @@ class Application implements ContainerInterface
      */
     public function createWebServer() {
         return $this->container->call([WebServerFactory::class, 'create']);
+    }
+
+    /**
+     * 创建命令行服务
+     */
+    public function createConsoleServer() {
+        return $this->container->call([ConsoleServerFactory::class, 'create']);
     }
 }
