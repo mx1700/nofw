@@ -18,6 +18,7 @@
 1. debug 输出（有问题，不好实现）
 1. 自定义路由（当路由不匹配时，进入自定义路由规则）
 1. 错误页（404,500，中间件实现）
+1. console 错误日志
 
 #### 待确认
 1. 异常日志记录(中间件实现)
@@ -41,4 +42,8 @@
     "monolog/monolog": "^1.20",             日志
     "zendframework/zend-diactoros": "^1.3", psr7 支持
     "relay/relay": "~1.0"                   中间件服务
+    "symfony/console": "^3.2"               console 组件
+    "vlucas/phpdotenv": "^2.4",             加载开发用环境变量
+    "symfony/debug": "^3.2",                开发用错误页
+    "symfony/var-dumper": "^3.2",           开发用调试输出
 
