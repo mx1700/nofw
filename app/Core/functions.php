@@ -39,3 +39,21 @@ if (!function_exists('app')) {
         }
     }
 }
+
+if (!function_exists('dd')) {
+    /**
+     * 调试输出并终止程序
+     * @param  mixed
+     */
+    function dd() {
+        $args = func_get_args();
+        foreach ($args as $arg) {
+            if (function_exists('dump')) {
+                dump($arg);
+            } else {
+                var_dump($arg);
+            }
+        }
+        die(1);
+    }
+}
