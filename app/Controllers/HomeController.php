@@ -21,21 +21,25 @@ class HomeController
 {
     /**
      * @var Request
+     * @Inject
      */
     private $request;
 
     /**
      * @var Response
+     * @Inject
      */
     private $response;
 
     /**
      * @var Database
+     * @Inject
      */
     private $db;
 
     /**
      * @var LoggerInterface
+     * @Inject
      */
     private $log;
 
