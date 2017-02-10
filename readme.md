@@ -46,4 +46,16 @@
     "vlucas/phpdotenv": "^2.4",             加载开发用环境变量
     "symfony/debug": "^3.2",                开发用错误页
     "symfony/var-dumper": "^3.2",           开发用调试输出
+    
+    
+## 组件参考手册
 
+依赖注入容器 php-di http://php-di.org/
+
+路由 fast-route https://github.com/nikic/FastRoute
+
+控制台程序 symfony/console https://symfony.com/doc/current/components/console.html
+
+加载环境变量 vlucas/phpdotenv https://github.com/vlucas/phpdotenv
+
+中间件概念介绍 https://www.slimframework.com/docs/concepts/middleware.html
