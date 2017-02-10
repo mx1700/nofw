@@ -9,7 +9,7 @@
 namespace App\Core;
 
 use \DI\Container;
-use Dotenv\Exception\ValidationException;
+use \Dotenv\Exception\ValidationException;
 use \Zend\Diactoros\Server;
 use Interop\Container\ContainerInterface;
 
@@ -81,7 +81,7 @@ class Application implements ContainerInterface
      * 加载环境变量配置，配置文件在项目根目录 .env 文件
      */
     private function loadEnv() {
-        if (class_exists('Dotenv\Dotenv')) {
+        if (class_exists('\Dotenv\Dotenv')) {
             $dotenv = new \Dotenv\Dotenv($this->basePath);
             $dotenv->load();
         }

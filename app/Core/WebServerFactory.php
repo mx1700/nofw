@@ -32,10 +32,10 @@ class WebServerFactory
                 );
                 switch ($route[0]) {
                     case Dispatcher::NOT_FOUND:
-                        $response->withStatus(404);
+                        $response = $response->withStatus(404);
                         break;
                     case Dispatcher::METHOD_NOT_ALLOWED:
-                        $response->withStatus(404);
+                        $response = $response->withStatus(405);
                         break;
                     case Dispatcher::FOUND:
                         $controller = $route[1];
