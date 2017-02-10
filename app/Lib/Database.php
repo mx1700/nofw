@@ -1,9 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: lizhaoguang
- * Date: 16/3/30
- * Time: 16:11
+ * 假设是一个数据库类，为了演示依赖注入
  */
 
 namespace App\Lib;
@@ -19,10 +16,6 @@ class Database
      */
     public function __construct($host, $port)
     {
-        /**
-         * D0 D1 D2 有顺序依赖关系，容器会自动注入相关的依赖
-         */
-
         //var_dump($host, $port);
     }
 }

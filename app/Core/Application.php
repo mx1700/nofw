@@ -1,8 +1,4 @@
 <?php
-/**
- * 引导文件不做任何业务处理，仅仅是加载配置，包括环境配置，项目配置，注入配置等
- */
-
 namespace App\Core;
 
 use \DI\Container;
@@ -10,6 +6,10 @@ use \Dotenv\Exception\ValidationException;
 use \Zend\Diactoros\Server;
 use Interop\Container\ContainerInterface;
 
+/**
+ * Application
+ * 不做任何业务处理，仅仅是加载配置，包括环境配置，项目配置，注入配置等
+ */
 class Application implements ContainerInterface
 {
     /**

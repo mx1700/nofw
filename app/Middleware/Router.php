@@ -17,6 +17,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * 路由中间件
+ * @package App\Middleware
+ */
 class Router
 {
     public function __construct(ContainerInterface $c, $routes, $cache_path, $debug = false)

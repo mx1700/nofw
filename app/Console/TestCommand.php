@@ -13,6 +13,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class TestCommand
+ * @package App\Console
+ */
 class TestCommand extends Command
 {
     public function __construct()

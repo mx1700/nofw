@@ -12,5 +12,4 @@ return [
      */
     ['GET', '/', ['App\Controllers\HomeController', 'hello']],
     ['GET', '/user/{id:\d+}', ['App\Controllers\HomeController', 'getUser']],
-    ['GET', '/hello', ['App\Controllers\HelloController', 'index']],
 ];

@@ -16,6 +16,10 @@ use \Zend\Diactoros\Server;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
+/**
+ * Class WebServerFactory
+ * @package app\Core
+ */
 class WebServerFactory
 {
     public function create(Container $c) {

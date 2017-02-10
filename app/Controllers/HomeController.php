@@ -1,7 +1,10 @@
 <?php
 namespace App\Controllers;
 
+use App\Core\YacCache;
+use App\Lib\Bar;
 use App\Lib\Database;
+use App\Lib\Foo;
 use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -50,30 +53,16 @@ class HomeController
      */
     private $debug;
 
-    /**
-     * 构造函数，依赖会被 DI 容器自动注入
-     * HomeController constructor.
-     * @param Request $request
-     * @param Response $response
-     * @param Database $db
-     * @param LoggerInterface $log
-     */
-    public function __construct(Request $request, Response $response, Database $db, LoggerInterface $log)
-    {
-        $this->request = $request;
-        $this->response = $response;
-        $this->db = $db;
-        $this->log = $log;
-    }
 
     public function hello($id = 1, $name = 'Tom')
     {
-        $this->log->error("aaa");
-        return new TextResponse("hello, {$name}. env: {$this->env}. debug:{$this->debug}, id:{$id}");
+        $this->log->info("id: ${id}");  //记录日志
+        return new TextResponse("hello, {$name}. env: {$this->env}. debug:{$this->debug}");
     }
 
     public function getUser($id)
     {
         return new JsonResponse(['id' => $id, 'name' => '你好']);
     }
+
 }

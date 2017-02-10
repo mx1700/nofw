@@ -11,6 +11,10 @@ namespace App\Core;
 use DI\Container;
 use Symfony\Component\Console\Application;
 
+/**
+ * Class ConsoleServerFactory
+ * @package App\Core
+ */
 class ConsoleServerFactory
 {
     public static function create(Container $c)
