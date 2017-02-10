@@ -44,7 +44,7 @@ return [
     //中间件配置
     'middlewares' => function(ContainerInterface $c) {
         return [
-          $c->get(\App\Middleware\Router::class)
+            \App\Middleware\Router::class,
         ];
     }
 ];

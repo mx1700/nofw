@@ -10,6 +10,7 @@ namespace app\Core;
 
 
 use DI\Container;
+use Dotenv\Exception\ValidationException;
 use Relay\RelayBuilder;
 use \Zend\Diactoros\Server;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -21,8 +22,19 @@ class WebServerFactory
         $debug = $c->get('app.debug');
 
         $server = Server::createServer(
-            function (Request $request,Response $response, $done) use ($c, $debug) {
-                $middlewares = $c->get('middlewares');
+            function (Request $request,Response $response, $done) use ($c) {
+                $middlewareConf = $c->get('middlewares');
+                $middlewares = array_map(function($m) use($c) {
+                    if (is_string($m)) {
+                        $m = $c->get($m);
+                    }
+                    if (is_callable($m)) {
+                        return $m;
+                    } else {
+                        throw new ValidationException("错误的中间件类型: " . print_r($m, true));
+                    }
+                }, $middlewareConf);
+
                 $relayBuilder = new RelayBuilder();
                 $relay = $relayBuilder->newInstance($middlewares);
                 $response = $relay($request, $response);
