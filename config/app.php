@@ -44,6 +44,7 @@ return [
     'middlewares' => function(ContainerInterface $c) {
         return [
             \App\Middleware\Router::class,
+            \App\Middleware\PoweredBy::class,
         ];
     },
     'commends' => [
