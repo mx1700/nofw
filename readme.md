@@ -5,7 +5,10 @@
 1. 执行 composer install
 1. .evn.example 文件重命名为 .env
 1. 启动 server（Win 执行 server.bat, Linux/Unix 执行 server）
-1. 浏览器访问 http://127.0.0.1:8000
+
+浏览器访问 http://127.0.0.1:8000 访问 web 服务
+
+执行 php console.php 调用控制台服务
 
 ## TODO
 #### 已确认
