@@ -97,7 +97,7 @@ class Application implements ContainerInterface
         $builder->useAutowiring(true);
         $builder->useAnnotations(true);
 
-        if (!$debug) {     //TODO:测试用
+        if (!$debug) {
             /*
              * 生产环境为 DI 容器增加缓存。这里使用的 Yac 作为缓存
              * 尝试过远程 redis 作为缓存，效果不好

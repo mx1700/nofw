@@ -34,19 +34,17 @@ return [
     /**
      * 路由管理类
      */
-    'router' => function(ContainerInterface $c) {   //路由控制器
-        $routes = $c->get('routes');
-        $cache_path = $c->get('app.cache_path');
-        $debug = $c->get('app.debug');
-        $dispatcher = FastRoute\cachedDispatcher(
-            function (RouteCollector $r) use ($routes) {
-                foreach ($routes as $routeDef) {
-                    $r->addRoute($routeDef[0], $routeDef[1], $routeDef[2]);
-                }
-            }, [
-            'cacheFile' => $cache_path . '/system/route.cache',
-            'cacheDisabled' => $debug,
-        ]);
-        return $dispatcher;
+    \App\Middleware\Router::class => function(ContainerInterface $c) {   //路由控制器
+        return new \App\Middleware\Router(
+            $c,
+            $c->get('routes'),
+            $c->get('app.cache_path') . '/system/route.cache',
+            $c->get('app.debug'));
     },
+    //中间件配置
+    'middlewares' => function(ContainerInterface $c) {
+        return [
+          $c->get(\App\Middleware\Router::class)
+        ];
+    }
 ];
