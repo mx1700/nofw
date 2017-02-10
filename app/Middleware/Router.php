@@ -9,9 +9,9 @@
 namespace App\Middleware;
 
 
+use DI\Container;
 use FastRoute\Dispatcher;
 use FastRoute\RouteCollector;
-use Interop\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -23,7 +23,7 @@ use Psr\Http\Message\ResponseInterface as Response;
  */
 class Router
 {
-    public function __construct(ContainerInterface $c, $routes, $cache_path, $debug = false)
+    public function __construct(Container $c, $routes, $cache_path, $debug = false)
     {
         $this->c = $c;
         $this->routes = $routes;
@@ -77,13 +77,16 @@ class Router
                 $controller = $route[1];
                 $parameters = $route[2];
 
-                $this->c->set(Request::class, $request);    //TODO: req & res 对象在不同中间件中会变化，不确定是否需要加入到容器中
-                $this->c->set(Response::class, $response);  //TODO: 应该为控制器创建一个子容器，来注入 req & res
+                //容器中不应该注入 req & res，因为在不同中间件中，两个对象会发生变化，而容器里的对象不会发生变化
+                //目前没有想到更好的办法把两个值注入到控制器内
+                $this->c->set(Request::class, $request);
+                $this->c->set(Response::class, $response);
 
                 $_get = $request->getQueryParams();
                 $_post = $request->getParsedBody();
                 $_files = $request->getUploadedFiles();
                 $parameters = array_merge($parameters, $_get, $_post, $_files);
+
                 /**
                  * 调用控制器，返回 Response 对象
                  * 容器对象 call 方法调用 控制器，会为控制器注入所需的依赖

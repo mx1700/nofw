@@ -57,8 +57,9 @@ class HomeController
 
     public function hello($id = 1, $name = 'Tom')
     {
+        $debug = $this->debug ? 'true' : 'false';
         $this->log->info("id: ${id}");  //记录日志
-        return new TextResponse("hello, {$name}. env: {$this->env}. debug:{$this->debug}");
+        return new TextResponse("hello, {$name}. env: {$this->env}. debug:{$debug}. method: " . $this->request->getMethod());
     }
 
     public function getUser($id)
