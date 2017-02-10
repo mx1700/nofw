@@ -2,9 +2,10 @@
 
 ## 快速开始
 1. clone 代码
-2. 执行 composer install
+1. 执行 composer install
 1. .evn.example 文件重命名为 .env
-3. 浏览器访问 http://127.0.0.1:8000
+1. 启动 server（Win 执行 server.bat, Linux/Unix 执行 server）
+1. 浏览器访问 http://127.0.0.1:8000
 
 ## TODO
 #### 已确认
