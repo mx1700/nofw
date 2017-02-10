@@ -1,10 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Core\YacCache;
-use App\Lib\Bar;
 use App\Lib\Database;
-use App\Lib\Foo;
 use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;

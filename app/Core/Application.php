@@ -33,7 +33,8 @@ class Application implements ContainerInterface
      * Application constructor.
      * @param string $basePath  项目跟目录
      */
-    public function __construct($basePath) {
+    public function __construct($basePath)
+    {
         if (static::$instance) {
             throw new ValidationException("只能存在一个 Application 实例");
         }
@@ -48,7 +49,8 @@ class Application implements ContainerInterface
      * 获取全局实例
      * @return Application
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         return static::$instance;
     }
 
@@ -58,7 +60,8 @@ class Application implements ContainerInterface
      * @param string $id Identifier of the entry to look for.
      * @return mixed Entry.
      */
-    public function get($id) {
+    public function get($id)
+    {
         return $this->container->get($id);
     }
 
@@ -70,14 +73,16 @@ class Application implements ContainerInterface
      *
      * @return boolean
      */
-    public function has($id) {
+    public function has($id)
+    {
         return $this->container->has($id);
     }
 
     /**
      * 加载环境变量配置，配置文件在项目根目录 .env 文件
      */
-    private function loadEnv() {
+    private function loadEnv()
+    {
         if (class_exists('\Dotenv\Dotenv')) {
             $dotenv = new \Dotenv\Dotenv($this->basePath);
             $dotenv->load();
@@ -87,7 +92,8 @@ class Application implements ContainerInterface
     /**
      * 构建依赖注入容器
      */
-    private function buildContainer() {
+    private function buildContainer()
+    {
         $debug = env('APP_DEBUG', false);
 
         $builder = new \DI\ContainerBuilder();
@@ -119,14 +125,16 @@ class Application implements ContainerInterface
      * 创建 web server
      * @return Server
      */
-    public function createWebServer() {
+    public function createWebServer()
+    {
         return $this->container->call([WebServerFactory::class, 'create']);
     }
 
     /**
      * 创建命令行服务
      */
-    public function createConsoleServer() {
+    public function createConsoleServer()
+    {
         return $this->container->call([ConsoleServerFactory::class, 'create']);
     }
 }

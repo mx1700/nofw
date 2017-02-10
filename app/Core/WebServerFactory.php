@@ -22,7 +22,8 @@ use Psr\Http\Message\ResponseInterface as Response;
  */
 class WebServerFactory
 {
-    public function create(Container $c) {
+    public function create(Container $c)
+    {
         $debug = $c->get('app.debug');
 
         $server = Server::createServer(
