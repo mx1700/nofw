@@ -16,6 +16,8 @@ class PoweredBy
 {
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next)
     {
-        return $response->withAddedHeader("X-Powered-By", 'nofw');
+        $response = $next($request, $response);
+        $response = $response->withAddedHeader("X-Powered-By", 'nofw');
+        return $response;
     }
 }
