@@ -31,7 +31,7 @@ return [
         return require dirname(__DIR__) . '/app/routes.php';
     },
     /**
-     * 路由管理类
+     * 配置路由管理类
      */
     \App\Middleware\Router::class => function(ContainerInterface $c) {   //路由控制器
         return new \App\Middleware\Router(
@@ -41,12 +41,11 @@ return [
             $c->get('app.debug'));
     },
     //中间件配置
-    'middlewares' => function(ContainerInterface $c) {
-        return [
-            \App\Middleware\Router::class,
-            \App\Middleware\PoweredBy::class,
-        ];
-    },
+    'middlewares' => [
+        \App\Middleware\Router::class,
+        \App\Middleware\PoweredBy::class,
+    ],
+    //命令行功能配置
     'commends' => [
         \App\Console\TestCommand::class
     ]
